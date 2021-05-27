@@ -148,12 +148,12 @@ body {
                 interval=setInterval(function(){ 
                 cnt.innerHTML = percent; 
                 water.style.transform='translate(0'+','+(100-percent+3)+'%)';
-                percent++; 
                 if(percent==level || level == 0){
-                    clearInterval(interval);
-                    cnt.innerHTML = level;
-                    percent = 0;
+                  clearInterval(interval);
+                  cnt.innerHTML = level;
+                  percent = 0;
                 }
+                percent++; 
                 },20);
             }
         });
