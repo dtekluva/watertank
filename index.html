@@ -1,93 +1,131 @@
 <style>
-    #banner {
-    border-radius: 3%;
-    width: 150px;
-    height: 300px;
-    background: #000;
-    overflow: hidden;
-    backface-visibility: hidden;
-    transform: translate3d(0, 0, 0);
-}
-#banner .fill {
-    animation-name: fillAction50;
-    animation-iteration-count: 1;
-    animation-timing-function: cubic-bezier(.2, .6, .8, .4);
-    animation-duration: 4s;
-    animation-fill-mode: forwards;
-}
-#banner #waveShape {
-    animation-name: waveAction;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-duration: 0.5s;
-    width:320px;
-    height: 350px;
-    fill: #04ACFF;
-}
-@keyframes fillAction100 {
-    0% {
-        transform: translate(0, 300px);
-    }
-    100% {
-        transform: translate(0, 1px);
-    }
-}
-@keyframes fillAction50 {
-    0% {
-        transform: translate(0, 300px);
-    }
-    100% {
-        transform: translate(0, 150px);
-    }
-}
-@keyframes fillAction25 {
-    0% {
-        transform: translate(0, 300px);
-    }
-    100% {
-        transform: translate(0, 240px);
-    }
-}
-@keyframes fillAction0 {
-    0% {
-        transform: translate(0, 300px);
-    }
-    100% {
-        transform: translate(0, 298px);
-    }
+    *, *:before, *:after {
+  box-sizing: border-box;
+  outline: none;
 }
 
-@keyframes waveAction {
-    0% {
-        transform: translate(-150px, 0);
-    }
-    100% {
-        transform: translate(0, 0);
-    }
+body {
+  background:#000000;
+  font: 14px/1 'Open Sans', helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
-</style>
 
-<h1>
-    Water Level Monitor.
-</h1>
-<div id="banner">
-    <div class="fill">
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="300px" height="300px" viewBox="0 0 300 300" enable-background="new 0 0 300 300" xml:space="preserve">
-          <path fill="#04ACFF" id="waveShape" d="M300,300V2.5c0,0-0.6-0.1-1.1-0.1c0,0-25.5-2.3-40.5-2.4c-15,0-40.6,2.4-40.6,2.4
-        c-12.3,1.1-30.3,1.8-31.9,1.9c-2-0.1-19.7-0.8-32-1.9c0,0-25.8-2.3-40.8-2.4c-15,0-40.8,2.4-40.8,2.4c-12.3,1.1-30.4,1.8-32,1.9
-        c-2-0.1-20-0.8-32.2-1.9c0,0-3.1-0.3-8.1-0.7V300H300z"/>
-        </svg>
-    </div>
-</div>
-<h1>
-    <span id="level">0</span><span>% Full.</span>
-</h1>
-
-<script>
-    var elem = document.getElementsByClassName('fill');
-    var elem2 = document.getElementById('level');
+.box{
+  height: 400px;
+  width: 280px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #4d51c7;
+  border-radius:1%;
+  border-top-right-radius:5%;
+  border-top-left-radius:5%;
+  overflow: hidden;
+} 
+  .percent{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index:3;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    display: -webkit-flex;
+    align-items:center;
+    justify-content:center; 
+    color:#fff;
+    font-size:64px;
+    font-family: cursive;
+  } 
+  .details{
+    position: absolute;
+    left: 0;
+    top: 30%;
+    z-index:3;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    display: -webkit-flex;
+    align-items:center;
+    justify-content:center; 
+    color:#fff;
+    font-size:64px;
+    font-family: cursive;
+  } 
+  .water{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index:2;
+    width: 100%;
+    height: 100%;
+    transform:translate(0,100%);
+    background:#4D6DE3;
+    transition: all .3s;
+  }
     
-    var target = 0;
+    ._wave{
+      width: 200%;
+      position: absolute;
+      bottom: 100%;
+    }
+    ._back {
+        right: 0;
+        fill: #C7EEFF;
+        animation: wave-back 1.4s infinite linear;
+      }
+    ._front {
+        left: 0;
+        fill: #4D6DE3;
+        margin-bottom: -1px;
+        animation: wave-front .7s infinite linear;
+    }
+
+@keyframes wave-front {
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes wave-back {
+  100% {
+    transform: translate(50%, 0);
+  }
+}
+
+</style>
+<h1 class="details">
+    Water Tank Level Monitor
+</h1>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" style="display: none;">
+    <symbol id="wave">
+      <path d="M420,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C514,6.5,518,4.7,528.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H420z"></path>
+      <path d="M420,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C326,6.5,322,4.7,311.5,2.7C304.3,1.4,293.6-0.1,280,0c0,0,0,0,0,0v20H420z"></path>
+      <path d="M140,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C234,6.5,238,4.7,248.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H140z"></path>
+      <path d="M140,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C46,6.5,42,4.7,31.5,2.7C24.3,1.4,13.6-0.1,0,0c0,0,0,0,0,0l0,20H140z"></path>
+    </symbol>
+  </svg>
+  <div class="box">
+    <div class="percent">
+      <div class="percentNum" id="count">0</div>
+      <div class="percentB">%</div>
+    </div>
+    <div id="water" class="water">
+      <svg viewBox="0 0 560 20" class="water_wave _wave water_wave_back _back">
+        <use xlink:href="#wave"></use>
+      </svg>
+      <svg viewBox="0 0 560 20" class="water_wave _wave water_wave_front _front">
+        <use xlink:href="#wave"></use>
+      </svg>
+    </div>
+  </div>
+
+
+  <script>
+    var cnt=document.getElementById("count");
+    var percent=cnt.innerText;
+    let level = 0;
 
     setInterval(() => {
         
@@ -96,31 +134,41 @@
         .then(data => {
 
             let new_feed = data.feeds[0].field1;
+            
+            console.log(new_feed, level)
+            if (new_feed != level){
 
-            if (new_feed != target){
+                level = new_feed;
+                var water=document.getElementById("water");
+                
+                var interval;
 
-                target = new_feed;
-                
-                
-                var index = 0;
-                
-                elem[0].style.animationName = `fillAction${target}`;
-
-                function demo() {
-                    
-                    // console.log(index == target)
-                    if (index == target){
-                        clearInterval(myVar);
-                    }
-                    elem2.innerHTML = `${index}`;
-                    
-                    index ++;
-                    
-                    
+                interval=setInterval(function(){ 
+                percent++; 
+                // console.log(percent, level, percent == level)
+                cnt.innerHTML = percent; 
+                water.style.transform='translate(0'+','+(100-percent+3)+'%)';
+                if(percent==level){
+                    clearInterval(interval);
+                    percent = 0;
                 }
-                
-                var myVar = setInterval(demo, 50);
+                },20);
             }
         });
-    }, 2000);
-</script>
+    }, 9000);
+    
+    // var cnt=document.getElementById("count"); 
+    // var water=document.getElementById("water");
+    // var percent=cnt.innerText;
+    // var interval;
+
+    // var level = 100;
+    // interval=setInterval(function(){ 
+    // percent++; 
+    // cnt.innerHTML = percent; 
+    // water.style.transform='translate(0'+','+(100-percent+3)+'%)';
+    // if(percent==level){
+    //     clearInterval(interval);
+    // }
+    // },20);
+  </script>
