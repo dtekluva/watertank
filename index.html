@@ -135,7 +135,7 @@ body {
         .then(data => {
 
             let new_feed = data.feeds[0].field1;
-            details[0].innerHTML = "Water Tank Level Monitor";
+            details[0].innerHTML = "Water Tank Monitor";
             
             console.log(new_feed, level)
             if (new_feed != level){
