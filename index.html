@@ -146,17 +146,18 @@ body {
                 var interval;
 
                 interval=setInterval(function(){ 
-                cnt.innerHTML = percent+1; 
+                cnt.innerHTML = percent; 
                 water.style.transform='translate(0'+','+(100-percent+3)+'%)';
                 percent++; 
                 if(percent==level || level == 0){
                     clearInterval(interval);
+                    cnt.innerHTML = level;
                     percent = 0;
                 }
                 },20);
             }
         });
-    }, 9000);
+    }, 5000);
     
     // var cnt=document.getElementById("count"); 
     // var water=document.getElementById("water");
