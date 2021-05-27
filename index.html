@@ -96,7 +96,7 @@ body {
 
 </style>
 <h1 class="details">
-    Water Tank Level Monitor
+    Loading level...
 </h1>
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" style="display: none;">
     <symbol id="wave">
@@ -124,6 +124,7 @@ body {
 
   <script>
     var cnt=document.getElementById("count");
+    var details=document.getElementsByClassName("details");
     var percent=cnt.innerText;
     let level = 0;
 
@@ -134,6 +135,7 @@ body {
         .then(data => {
 
             let new_feed = data.feeds[0].field1;
+            details[0].innerHTML = "Water Tank Level Monitor";
             
             console.log(new_feed, level)
             if (new_feed != level){
@@ -145,7 +147,6 @@ body {
 
                 interval=setInterval(function(){ 
                 percent++; 
-                // console.log(percent, level, percent == level)
                 cnt.innerHTML = percent; 
                 water.style.transform='translate(0'+','+(100-percent+3)+'%)';
                 if(percent==level){
