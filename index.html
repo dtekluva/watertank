@@ -149,7 +149,7 @@ body {
                 percent++; 
                 cnt.innerHTML = percent; 
                 water.style.transform='translate(0'+','+(100-percent+3)+'%)';
-                if(percent==level){
+                if(percent==level || level == 0){
                     clearInterval(interval);
                     percent = 0;
                 }
