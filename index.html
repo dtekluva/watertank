@@ -146,9 +146,9 @@ body {
                 var interval;
 
                 interval=setInterval(function(){ 
-                percent++; 
-                cnt.innerHTML = percent; 
+                cnt.innerHTML = percent+1; 
                 water.style.transform='translate(0'+','+(100-percent+3)+'%)';
+                percent++; 
                 if(percent==level || level == 0){
                     clearInterval(interval);
                     percent = 0;
