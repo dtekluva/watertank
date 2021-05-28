@@ -1,176 +1,100 @@
-<style>
-    *, *:before, *:after {
-  box-sizing: border-box;
-  outline: none;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Water Monitor</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form">
+					<span class="login100-form-title p-b-26">
+						Welcome The Monitor
+					</span>
+					<span class="login100-form-title p-b-48">
+						<i class="zmdi zmdi-portable-wifi"></i>
+					</span>
 
-body {
-  background:#000000;
-  font: 14px/1 'Open Sans', helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
+					<div class="wrap-input100 validate-input" data-validate = "Valid name is: abc">
+						<input class="input100" type="text" name="name" id = "name">
+						<span class="focus-input100" data-placeholder="name"></span>
+					</div>
 
-.box{
-  height: 400px;
-  width: 280px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #4d51c7;
-  border-radius:1%;
-  border-top-right-radius:5%;
-  border-top-left-radius:5%;
-  overflow: hidden;
-} 
-  .percent{
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index:3;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    display: -webkit-flex;
-    align-items:center;
-    justify-content:center; 
-    color:#fff;
-    font-size:64px;
-    font-family: cursive;
-  } 
-  .details{
-    position: absolute;
-    left: 0;
-    top: 30%;
-    z-index:3;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    display: -webkit-flex;
-    align-items:center;
-    justify-content:center; 
-    color:#fff;
-    font-size:64px;
-    font-family: cursive;
-  } 
-  .water{
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index:2;
-    width: 100%;
-    height: 100%;
-    transform:translate(0,100%);
-    background:#4D6DE3;
-    transition: all .3s;
-  }
-    
-    ._wave{
-      width: 200%;
-      position: absolute;
-      bottom: 100%;
-    }
-    ._back {
-        right: 0;
-        fill: #C7EEFF;
-        animation: wave-back 1.4s infinite linear;
-      }
-    ._front {
-        left: 0;
-        fill: #4D6DE3;
-        margin-bottom: -1px;
-        animation: wave-front .7s infinite linear;
-    }
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+						<input class="input100" type="password" name="pass" id="pass">
+						<span class="focus-input100" data-placeholder="Password"></span>
+					</div>
 
-@keyframes wave-front {
-  100% {
-    transform: translate(-50%, 0);
-  }
-}
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button href = "/water.html" class="login100-form-btn">
+								Login
+							</button>
+						</div>
+					</div>
 
-@keyframes wave-back {
-  100% {
-    transform: translate(50%, 0);
-  }
-}
+					<div class="text-center p-t-115">
+						<span class="txt1">
+							Don’t have an account?
+						</span>
 
-</style>
-<h1 class="details">
-    Loading level...
-</h1>
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" style="display: none;">
-    <symbol id="wave">
-      <path d="M420,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C514,6.5,518,4.7,528.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H420z"></path>
-      <path d="M420,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C326,6.5,322,4.7,311.5,2.7C304.3,1.4,293.6-0.1,280,0c0,0,0,0,0,0v20H420z"></path>
-      <path d="M140,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C234,6.5,238,4.7,248.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H140z"></path>
-      <path d="M140,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C46,6.5,42,4.7,31.5,2.7C24.3,1.4,13.6-0.1,0,0c0,0,0,0,0,0l0,20H140z"></path>
-    </symbol>
-  </svg>
-  <div class="box">
-    <div class="percent">
-      <div class="percentNum" id="count">0</div>
-      <div class="percentB">%</div>
-    </div>
-    <div id="water" class="water">
-      <svg viewBox="0 0 560 20" class="water_wave _wave water_wave_back _back">
-        <use xlink:href="#wave"></use>
-      </svg>
-      <svg viewBox="0 0 560 20" class="water_wave _wave water_wave_front _front">
-        <use xlink:href="#wave"></use>
-      </svg>
-    </div>
-  </div>
+						<a class="txt2" href="#">
+							Sign Up
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
 
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
 
-  <script>
-    var cnt=document.getElementById("count");
-    var details=document.getElementsByClassName("details");
-    var percent=cnt.innerText;
-    let level = 0;
-
-    setInterval(() => {
-        
-        fetch("https://api.thingspeak.com/channels/1400602/feeds.json?api_key=0B46SNXVDTDVLJ71&results=1")
-        .then(response => response.json())
-        .then(data => {
-
-            let new_feed = data.feeds[0].field1;
-            details[0].innerHTML = "Water Tank Monitor";
-            
-            console.log(new_feed, level)
-            if (new_feed != level){
-
-                level = new_feed;
-                var water=document.getElementById("water");
-                
-                var interval;
-
-                interval=setInterval(function(){ 
-                cnt.innerHTML = percent; 
-                water.style.transform='translate(0'+','+(100-percent+3)+'%)';
-                if(percent==level || level == 0){
-                  clearInterval(interval);
-                  cnt.innerHTML = level;
-                  percent = 0;
-                }
-                percent++; 
-                },20);
-            }
-        });
-    }, 5000);
-    
-    // var cnt=document.getElementById("count"); 
-    // var water=document.getElementById("water");
-    // var percent=cnt.innerText;
-    // var interval;
-
-    // var level = 100;
-    // interval=setInterval(function(){ 
-    // percent++; 
-    // cnt.innerHTML = percent; 
-    // water.style.transform='translate(0'+','+(100-percent+3)+'%)';
-    // if(percent==level){
-    //     clearInterval(interval);
-    // }
-    // },20);
-  </script>
+</body>
+</html>
